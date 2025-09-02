@@ -1,4 +1,4 @@
-name: CI
+name: Build RandomWars JAR
 
 on:
   push:
@@ -12,18 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Клонуємо репозиторій
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Встановлюємо JDK
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Gradle
+      # 3. Використовуємо Gradle Wrapper для збірки
+      - name: Build with Gradle Wrapper
         run: ./gradlew clean build
 
+      # 4. Завантажуємо готовий JAR як артефакт
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
