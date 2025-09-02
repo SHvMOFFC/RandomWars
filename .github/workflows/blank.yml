@@ -27,13 +27,13 @@ jobs:
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
 
-      # 4. Переходимо у підпапку та збираємо проект
+      # 4. Збираємо проект у корені
       - name: Build with Gradle
-        run: cd RandomWars && gradle clean build
+        run: gradle clean build
 
-      # 5. Завантажуємо готовий JAR як артефакт
+      # 5. Завантажуємо JAR як артефакт
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
           name: RandomWars-jar
-          path: RandomWars/build/libs/*.jar
+          path: build/libs/*.jar
