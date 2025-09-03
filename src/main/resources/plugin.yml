@@ -1,9 +1,0 @@
-name: RandomWars
-main: shvmoffc.YourPlugin
-version: 1.0.0
-api-version: 1.21
-author: shvmoffc
-commands:
-  startgame:
-    description: Start the RandomWars match
-    usage: /startgame
