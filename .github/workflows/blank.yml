@@ -1,39 +1,29 @@
-name: Build RandomWars JAR
+name: Build plugin
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Клонуємо репозиторій
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      # 2. Встановлюємо JDK 17
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          distribution: temurin
+          java-version: 21
 
-      # 3. Встановлюємо Gradle
-      - name: Set up Gradle
-        uses: gradle/gradle-build-action@v2
-
-      # 4. Збираємо проект у корені
       - name: Build with Gradle
-        run: gradle clean build
+        run: ./gradlew build --stacktrace --info
 
-      # 5. Завантажуємо JAR як артефакт
-      - name: Upload JAR artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload plugin artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: RandomWars-jar
+          name: RandomWars
           path: build/libs/*.jar
