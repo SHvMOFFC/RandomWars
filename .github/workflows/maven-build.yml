@@ -28,3 +28,9 @@ jobs:
       with:
         name: RandomWars-plugin
         path: target/RandomWars.jar
+on:
+  workflow_dispatch:  # Дозволяє ручний запуск
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
